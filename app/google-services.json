@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "800622467623",
+    "project_id": "opentweets-c7c0b",
+    "storage_bucket": "opentweets-c7c0b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800622467623:android:9745ffdd5009a75a0b4c02",
+        "android_client_info": {
+          "package_name": "com.example.opentweet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALLQdxMQZft9je-8c0c0jKJT1L6ijywn4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
