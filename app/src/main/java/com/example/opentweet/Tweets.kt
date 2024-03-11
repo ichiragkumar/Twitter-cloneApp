@@ -30,12 +30,19 @@ class Tweets : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tweets)
+        fetchLoggedInUserData()
 
 
-        val fabTweet = findViewById<FloatingActionButton>(R.id.fab_tweet)
+        val fabTweet = findViewById<FloatingActionButton>(R.id.addProfile)
         fabTweet.setOnClickListener {
-            val intent = Intent(this, AddTweets::class.java)
+            val intent = Intent(this, UpdateProfile::class.java)
             startActivity(intent)
+        }
+
+        val fabTweetToProfile = findViewById<FloatingActionButton>(R.id.fab_tweet)
+        fabTweetToProfile.setOnClickListener {
+            val intent2 = Intent(this, AddTweets::class.java)
+            startActivity(intent2)
         }
         checkUserLoggedIn()
 
@@ -79,7 +86,44 @@ class Tweets : AppCompatActivity() {
         // Implement your logic to redirect the user to the login screen
         // This might involve starting a new Activity
     }
+
+    private fun fetchLoggedInUserData() {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+
+        println(userId)
+        if (userId != null) {
+            val ref = FirebaseDatabase.getInstance("https://opentweets-c7c0b-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users").child(userId)
+
+            ref.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val user = dataSnapshot.getValue(UpdateProfile.User::class.java)
+                    user?.let {
+                        // Update UI with the logged-in user's data
+                        findViewById<TextView>(R.id.userNameTextView).text ="Name:  " + user.name.uppercase()
+                        findViewById<TextView>(R.id.userGenderTextView).text ="Gender:  " + user.gender
+                        findViewById<TextView>(R.id.userAgeTextView).text ="AGE:  " + user.age.toString()
+                        findViewById<TextView>(R.id.userDobTextView).text ="DOB:  " + user.dob
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Toast.makeText(applicationContext, "Database error: ${databaseError.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+        } else {
+            Toast.makeText(applicationContext, "User not logged in", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }
+
+data class User(
+    val name: String = "",
+    val gender: String = "",
+    val age: Int = 0,
+    val dob: String = ""
+)
+
 
 
 
