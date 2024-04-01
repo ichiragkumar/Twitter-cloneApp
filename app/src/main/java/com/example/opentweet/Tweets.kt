@@ -4,6 +4,7 @@ import android.content.Intent
 import com.example.opentweet.databinding.ActivityTweetsBinding
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -36,6 +37,12 @@ class Tweets : AppCompatActivity() {
         val fabTweet = findViewById<FloatingActionButton>(R.id.addProfile)
         fabTweet.setOnClickListener {
             val intent = Intent(this, UpdateProfile::class.java)
+            startActivity(intent)
+        }
+
+        val exploreButton = findViewById<Button>(R.id.button4)
+        exploreButton.setOnClickListener {
+            val intent = Intent(this, TweetsPage::class.java)
             startActivity(intent)
         }
 

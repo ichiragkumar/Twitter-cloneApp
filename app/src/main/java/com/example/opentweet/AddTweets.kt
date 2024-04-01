@@ -1,14 +1,9 @@
 package com.example.opentweet
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
@@ -48,7 +43,7 @@ class AddTweets : AppCompatActivity() {
 
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null && tweetId != null) {
-            val tweet = Tweet(title, description, currentUser.uid)
+            val tweet = TweetDataClass(title, description, currentUser.uid)
             databaseReference.child(tweetId).setValue(tweet).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(this, "Tweet posted successfully", Toast.LENGTH_SHORT).show()
