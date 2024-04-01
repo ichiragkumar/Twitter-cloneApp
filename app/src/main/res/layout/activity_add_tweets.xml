@@ -20,18 +20,36 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.134" />
 
+<!--    <EditText-->
+<!--        android:id="@+id/descriptionEditText"-->
+<!--        android:layout_width="281dp"-->
+<!--        android:layout_height="47dp"-->
+<!--        android:hint="Description"-->
+<!--        android:inputType="textMultiLine|textCapSentences"-->
+<!--        android:minLines="3"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.311" />-->
+
     <EditText
         android:id="@+id/descriptionEditText"
         android:layout_width="281dp"
-        android:layout_height="47dp"
+        android:layout_height="wrap_content"
         android:hint="Description"
-        android:inputType="textMultiLine"
+        android:inputType="textMultiLine|textCapSentences"
         android:minLines="3"
+        android:maxLines="6"
+        android:gravity="top|start"
+        android:scrollbars="vertical"
+        android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.311" />
+
 
     <Button
         android:id="@+id/postTweetButton"

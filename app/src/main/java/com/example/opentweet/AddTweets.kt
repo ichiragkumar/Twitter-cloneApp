@@ -6,7 +6,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 class AddTweets : AppCompatActivity() {
@@ -21,6 +23,7 @@ class AddTweets : AppCompatActivity() {
         postTweetButton.setOnClickListener {
             val title = titleEditText.text.toString().trim()
             val description = descriptionEditText.text.toString().trim()
+
 
             // Basic validation
             if (title.isEmpty()) {
@@ -43,7 +46,16 @@ class AddTweets : AppCompatActivity() {
 
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null && tweetId != null) {
-            val tweet = TweetDataClass(title, description, currentUser.uid)
+            val sdf = SimpleDateFormat("MMM yyyy HH:mm", Locale.getDefault())
+            val formattedTimestamp = sdf.format(Date())
+            val tweet = hashMapOf(
+                "title" to title,
+                "description" to description,
+                "userId" to currentUser.uid,
+                "timestamp" to formattedTimestamp // Current time in milliseconds
+            )
+//            val tweet = TweetDataClass(title, description, currentUser.uid)
+
             databaseReference.child(tweetId).setValue(tweet).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(this, "Tweet posted successfully", Toast.LENGTH_SHORT).show()
