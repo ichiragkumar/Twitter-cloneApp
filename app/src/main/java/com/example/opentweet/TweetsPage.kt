@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
+import android.widget.Toast
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
 import com.google.firebase.database.*
@@ -22,6 +23,9 @@ class TweetsPage : AppCompatActivity() {
     private lateinit var tweetAdapter: ArrayAdapter<String>
     private var tweetsList = ArrayList<String>()
     private var isSortedOldToNew = true
+    private var tweetObjects = ArrayList<TweetDataClass>()
+    private var dataList: MutableList<String> = mutableListOf()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,9 +37,8 @@ class TweetsPage : AppCompatActivity() {
         val listView: ListView = findViewById(R.id.listView)
         listView.adapter = tweetAdapter
 
+
         fetchTweets()
-
-
 
     }
     private fun fetchTweets() {
@@ -46,25 +49,43 @@ class TweetsPage : AppCompatActivity() {
                     val tweet = tweetSnapshot.getValue(TweetDataClass::class.java)
                     tweet?.let {
 
-//                        val sortButton: Button = findViewById(R.id.sortButton)
-//                        sortButton.setOnClickListener {
-//                            // Toggle the sort order
-//
-//                            isSortedOldToNew = !isSortedOldToNew
-//                            tweetsList.sortWith(compareBy {it.timestamp})
-//                            if (!isSortedOldToNew) {
-//                                tweetsList.reverse()
-//                            }
-//                            tweetAdapter.notifyDataSetChanged()
-//                            sortButton.text = if (isSortedOldToNew) "Sort New to Old" else "Sort Old to New"
-//                        }
-//
+                       val sortButton: Button = findViewById(R.id.sortButton)
+                        sortButton.setOnClickListener {
+                            // Toggle the sort order
+                            isSortedOldToNew = !isSortedOldToNew
+
+                            // Sort tweetObjects based on the timestamp
+                            val displayList = tweetObjects.map { tweet ->
+                                // Format for displayText
+                                "${"  " + tweet.title?.toUpperCase() + "\n\n"}  ${tweet.description + "\n"} ${tweet.timestamp}"
+                            }
+
+
+                            if (isSortedOldToNew) {
+                                Toast.makeText(this@TweetsPage, "First sorted from new to old", Toast.LENGTH_SHORT).show()
+                                tweetsList.reverse() // This reverses the order of items in dataList
+                                tweetAdapter.notifyDataSetChanged()
+
+                            } else {
+                                tweetsList.reverse() // This reverses the order of items in dataList
+                                tweetAdapter.notifyDataSetChanged()
+                                Toast.makeText(this@TweetsPage, "Seccond sorted from new to old", Toast.LENGTH_SHORT).show()
+
+                            }
+                            sortButton.text =
+                                if (isSortedOldToNew) "Sort New to Old" else "Sort Old to New"
+                        }
+
+
                         val displayText = "${"  " + it.title?.toUpperCase() + "\n\n"}  ${it.description + "\n"} ${it.timestamp}"
                         tweetsList.add(displayText)
                     }
-
                 }
                 tweetAdapter.notifyDataSetChanged()
+
+
+
+
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -75,6 +96,8 @@ class TweetsPage : AppCompatActivity() {
 
 
     }
+
+
 
 
 }
