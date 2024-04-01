@@ -6,6 +6,10 @@ import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import com.google.firebase.database.*
+import java.text.SimpleDateFormat
+import com.google.firebase.database.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class TweetsPage : AppCompatActivity() {
@@ -13,6 +17,7 @@ class TweetsPage : AppCompatActivity() {
     private lateinit var database: DatabaseReference
     private lateinit var tweetAdapter: ArrayAdapter<String>
     private var tweetsList = ArrayList<String>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tweets_page)
@@ -31,9 +36,15 @@ class TweetsPage : AppCompatActivity() {
                 for (tweetSnapshot in dataSnapshot.children) {
                     val tweet = tweetSnapshot.getValue(TweetDataClass::class.java)
                     tweet?.let {
-                        val displayText = "${it.title}: ${it.description}"
+//                        val displayText = "${it.title}: ${it.description}"
+//                        tweetsList.add(displayText)
+                        val sdf = SimpleDateFormat("MMM yyyy || HH:mm", Locale.getDefault())
+                        val timestamp = it.timestamp ?: System.currentTimeMillis()
+                        val dateString = sdf.format(Date(timestamp))
+                        val displayText = "${"  " +it.title?.toUpperCase() + "\n\n"}  ${it.description + "\n" + "                                    "}  $dateString"
                         tweetsList.add(displayText)
                     }
+
                 }
                 tweetAdapter.notifyDataSetChanged()
             }

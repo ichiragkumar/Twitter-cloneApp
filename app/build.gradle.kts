@@ -53,6 +53,8 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation ("com.google.firebase:firebase-auth-ktx")
     implementation ("com.google.firebase:firebase-database-ktx")
-    implementation ("com.google.android.material:material:1.4.0") // Use the latest version
+    implementation ("com.google.android.material:material:1.4.0")
+    implementation ("androidx.cardview:cardview:1.0.0")
+// Use the latest version
 
 }
