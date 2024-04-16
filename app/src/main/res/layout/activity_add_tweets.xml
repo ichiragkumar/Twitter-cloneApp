@@ -62,7 +62,7 @@
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#0B0707"
         android:padding="20dp"
-        android:text="Post Tweet"
+        android:text="Post Threads"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.467"

@@ -44,7 +44,7 @@
         android:id="@+id/textView4"
         android:layout_width="215dp"
         android:layout_height="38dp"
-        android:text="Tweets"
+        android:text="Threads"
         android:textColor="@color/black"
         android:textSize="30dp"
         android:textStyle="bold"
