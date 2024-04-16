@@ -106,10 +106,10 @@ class Tweets : AppCompatActivity() {
                     val user = dataSnapshot.getValue(UpdateProfile.User::class.java)
                     user?.let {
                         // Update UI with the logged-in user's data
-                        findViewById<TextView>(R.id.userNameTextView).text ="Name:  " + user.name.uppercase()
-                        findViewById<TextView>(R.id.userGenderTextView).text ="Gender:  " + user.gender
-                        findViewById<TextView>(R.id.userAgeTextView).text ="AGE:  " + user.age.toString()
-                        findViewById<TextView>(R.id.userDobTextView).text ="DOB:  " + user.dob
+                        findViewById<TextView>(R.id.userNameTextView).text ="" + user.name.uppercase()
+                        findViewById<TextView>(R.id.userGenderTextView).text ="" + user.gender
+                        findViewById<TextView>(R.id.userAgeTextView).text ="" + user.age.toString()
+                        findViewById<TextView>(R.id.userDobTextView).text ="" + user.dob
                     }
                 }
 
