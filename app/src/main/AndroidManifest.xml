@@ -15,6 +15,9 @@
         android:theme="@style/Theme.OpenTweet"
         tools:targetApi="31">
         <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".ItemActivity"
             android:exported="false" />
         <activity

@@ -55,7 +55,7 @@ class Login : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
                 // Login successful, navigate to TweetScreen
-                val intent = Intent(this, Tweets::class.java)
+                val intent = Intent(this, TweetsPage::class.java)
                 startActivity(intent)
                 finish()
             } else {

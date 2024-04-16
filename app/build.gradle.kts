@@ -19,6 +19,7 @@ android {
     }
 
     buildFeatures{
+        dataBinding=true
         viewBinding=true
     }
 
@@ -55,6 +56,9 @@ dependencies {
     implementation ("com.google.firebase:firebase-database-ktx")
     implementation ("com.google.android.material:material:1.4.0")
     implementation ("androidx.cardview:cardview:1.0.0")
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.3.5")
+    implementation ("androidx.navigation:navigation-ui-ktx:2.3.5")
+    implementation ("com.google.android.material:material:1.4.0")
 // Use the latest version
 
 }
