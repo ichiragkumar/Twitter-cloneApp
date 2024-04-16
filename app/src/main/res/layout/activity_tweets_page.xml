@@ -22,8 +22,8 @@
 
     <ListView
         android:id="@+id/listView"
-        android:layout_width="406dp"
-        android:layout_height="627dp"
+        android:layout_width="355dp"
+        android:layout_height="504dp"
         android:layout_marginTop="104dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="30dp"
@@ -33,9 +33,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sortButton"
-        tools:listitem="@layout/eachitem" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/eachitem">
+
+    </ListView>
 
     <TextView
         android:id="@+id/textView4"
@@ -48,6 +50,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.627" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="50dp"
+        android:layout_height="53dp"
+        android:background="@drawable/rounded_button"
+        android:onClick="onImageButtonClick"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.379"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.986"
+        app:srcCompat="@drawable/addition" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="64dp"
+        android:layout_height="55dp"
+        android:background="@drawable/rounded_button"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.598"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.986"
+        app:srcCompat="@drawable/profile" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="400dp"
+        android:layout_height="4dp"
+        android:background="#000000"
+        android:backgroundTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.914" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

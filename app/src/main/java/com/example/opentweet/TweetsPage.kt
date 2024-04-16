@@ -1,11 +1,13 @@
 package com.example.opentweet
 
+import android.content.Intent
 import android.net.ParseException
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ListView
 import android.widget.Toast
 import com.google.firebase.database.*
@@ -14,6 +16,7 @@ import com.google.firebase.database.*
 import java.util.*
 import kotlin.collections.ArrayList
 import java.util.*
+
 
 
 
@@ -27,10 +30,28 @@ class TweetsPage : AppCompatActivity() {
     private var dataList: MutableList<String> = mutableListOf()
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tweets_page)
+
+
+        val addTweetPAge = findViewById<ImageButton>(R.id.imageButton)
+        addTweetPAge.setOnClickListener{
+                // Start ProfileScreen activity
+                val intent = Intent(this, AddTweets::class.java)
+                startActivity(intent)
+
+        }
+
+        val profilePage = findViewById<ImageButton>(R.id.imageButton2)
+        profilePage.setOnClickListener{
+                // Start ProfileScreen activity
+                val intent = Intent(this, Tweets::class.java)
+                startActivity(intent)
+
+        }
+
+
         database = FirebaseDatabase.getInstance("https://opentweets-c7c0b-default-rtdb.asia-southeast1.firebasedatabase.app/").reference
 
         tweetAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, tweetsList)
@@ -39,6 +60,8 @@ class TweetsPage : AppCompatActivity() {
 
 
         fetchTweets()
+
+
 
     }
     private fun fetchTweets() {
